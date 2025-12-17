@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣金融交易名詞懶人包 (圖解版)</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #475569;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 1rem;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.25rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 1.5rem;
+            background-color: var(--primary-color);
+            margin-right: 0.75rem;
+            border-radius: 4px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: '•';
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            background-color: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: var(--primary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: #fff1f2;
+            border-left: 4px solid #e11d48;
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🇹🇼 台灣金融交易名詞懶人包 (圖解版)</h1>
+            <p style="text-align: center; color: var(--text-muted);">
+                一頁搞懂股票、外匯、期貨常見術語與市場潛規則
+            </p>
+        </header>
+
+        <!-- Section 1: Core Concepts -->
+        <div class="card">
+            <h2>1. 核心交易概念：多 vs 空</h2>
+            <p>理解「做多」與「做空」是所有交易的基礎方向。</p>
+
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                <div>
+                    <h3>📈 做多 (Long)</h3>
+                    <p>看好後市，<strong>先買進</strong>，希望價格上漲後賣出獲利。</p>
+                </div>
+                <div>
+                    <h3>📉 做空 (Short)</h3>
+                    <p>看壞後市，<strong>先賣出</strong> (通常需融券/借券)，希望價格下跌後買回 (回補) 賺取價差。</p>
+                </div>
+            </div>
+
+            <div class="mermaid">
+                graph LR
+                subgraph GrpLong ["📈 做多 (Buy Long)"]
+                direction TB
+                L1("低價買入") --> L2("等待價格上漲") --> L3("高價賣出") --> L4("💰 獲利")
+                end
+                subgraph GrpShort ["📉 做空 (Sell Short)"]
+                direction TB
+                S1("向券商借券賣出") --> S2("等待價格下跌") --> S3("低價買回還券") --> S4("💰 獲利")
+                end
+                style GrpLong fill:#dcfce7,stroke:#166534,stroke-width:2px
+                style GrpShort fill:#fee2e2,stroke:#991b1b,stroke-width:2px
+            </div>
+        </div>
+
+        <!-- Section 2: Stocks -->
+        <div class="card">
+            <h2>2. 股票 (Stocks) 與 市場俚語</h2>
+            <p>股票代表公司的所有權。在台灣股市中，散戶與大戶的互動衍生出許多獨特的俚語。</p>
+
+            <h3>常見名詞：基本術語</h3>
+            <ul>
+                <li><span class="tag">上市</span> <strong>Listing</strong>：公司股票首次在證券交易所掛牌，開始公開交易。</li>
+                <li><span class="tag">上櫃</span> <strong>OTC Listing</strong>：公司股票在櫃檯買賣中心掛牌交易，門檻通常較上市低。</li>
+                <li><span class="tag">IPO</span> <strong>Initial Public Offering</strong>：首次公開發行，公司首次向公眾發行股票。</li>
+                <li><span class="tag">市值</span> <strong>Market Capitalization</strong>：公司總股票數乘以目前股價，代表公司的市場總價值。</li>
+                <li><span class="tag">本益比</span> <strong>P/E Ratio</strong>：股價除以每股盈餘 (EPS)，評估股價是否昂貴的指標。</li>
+                <li><span class="tag">EPS</span> <strong>每股盈餘</strong>：公司稅後淨利除以流通在外股數，代表每一股賺了多少錢。</li>
+                <li><span class="tag">除權息</span> <strong>Ex-Rights/Ex-Dividend</strong>：公司分配股票/現金股利給股東，股價會相應調降。</li>
+            </ul>
+
+            <h3>常見名詞：交易市場</h3>
+            <ul>
+                <li><span class="tag">大盤</span> <strong>The Market / Index</strong>：衡量整體股市表現的指標，如「加權指數」。</li>
+                <li><span class="tag">牛市</span> <strong>Bull Market</strong> (多頭)：股市呈現長期上漲趨勢。</li>
+                <li><span class="tag">熊市</span> <strong>Bear Market</strong> (空頭)：股市呈現長期下跌趨勢。</li>
+                <li><span class="tag">融資</span> <strong>Margin Buy</strong>：借錢買股票 (槓桿做多)。</li>
+                <li><span class="tag">融券</span> <strong>Short Sell</strong>：借股票賣出 (槓桿做空)。</li>
+                <li><span class="tag">當沖</span> <strong>Day Trade</strong>：當日買進並在當日賣出，不留倉過夜。</li>
+                <li><span class="tag">三大法人</span>：外資 (外國機構)、投信 (國內基金)、自營商 (券商自己操作)，統稱市場的大戶。</li>
+            </ul>
+
+            <h3>📊 割韭菜循環 (The "Leek" Cycle)</h3>
+            <p>「韭菜」比喻散戶生命力頑強，被割了一茬又會長出來。常見的「養、套、殺」劇本如下：</p>
+
+            <div class="mermaid">
+                sequenceDiagram
+                participant BigPlayer as "🐳 大戶/主力"
+                participant Market as "📊 股價走勢"
+                participant Leek as "🌱 散戶 (韭菜)"
+
+                Note over BigPlayer, Market: 1. 養 (Nurture)
+                BigPlayer->>Market: 低檔吸籌，股價緩升
+                BigPlayer->>Leek: 釋放利多消息/題材
+                Leek->>Market: 散戶進場幫忙推升 (抬轎)
+
+                Note over BigPlayer, Market: 2. 套 (Trap)
+                Market->>Market: 股價急漲，創新高
+                Leek->>Market: 散戶貪婪加碼/融資 (追高)
+                BigPlayer->>Market: 高檔大量倒貨 (獲利了結)
+                Market->>Market: 股價反轉下跌，散戶被套牢
+
+                Note over BigPlayer, Market: 3. 殺 (Kill)
+                Leek->>Leek: 不願停損，期待反彈 (凹單)
+                Market->>Market: 暴跌/破底
+                Leek->>BigPlayer: 恐慌認賠殺出 (割韭菜)
+                BigPlayer->>Market: 低檔再次接走籌碼
+            </div>
+
+            <div class="highlight-box">
+                <strong>股市黑話大百科：</strong><br>
+                • <strong>抬轎</strong>：散戶在不知情下追高，幫助主力推升股價，讓主力能漂亮出貨。<br>
+                • <strong>套牢</strong>：買進後股價下跌，虧損但未賣出，資金被卡在裡面。<br>
+                • <strong>凹單</strong>：虧損時不願止損，堅持持有甚至加碼攤平，期待行情反轉。<br>
+                • <strong>畢業</strong>：賠光本金，被迫離開市場。<br>
+                • <strong>空中飛人</strong>：指當沖失利，無法在收盤前補回股票或資金，導致違約交割。<br>
+                • <strong>外資 (小兒)</strong>：指外國機構投資者，因操作手法有時令人摸不著頭緒，被戲稱。<br>
+                • <strong>糖漿</strong>：指「國安基金」，諧音感冒糖漿，當股市暴跌時進場護盤的資金。
+            </div>
+        </div>
+
+        <!-- Section 3: Futures -->
+        <div class="card">
+            <h2>3. 期貨 (Futures) 與 風險控制</h2>
+            <p>期貨是高槓桿的保證金交易，風險管理至關重要。</p>
+
+            <h3>關鍵術語</h3>
+            <ul>
+                <li><span class="tag">口</span> <strong>Lot</strong>：期貨交易的單位量詞，如「買進一口台指期」。</li>
+                <li><span class="tag">原始保證金</span> <strong>Initial Margin</strong>：進場交易前帳戶必須擁有的最低資金額度。</li>
+                <li><span class="tag">維持保證金</span> <strong>Maintenance Margin</strong>：持有部位期間，帳戶權益數必須維持的最低額度。</li>
+                <li><span class="tag">追繳保證金</span> <strong>Margin Call</strong>：權益數低於維持保證金時，需補足資金至原始保證金水位。</li>
+                <li><span class="tag">未平倉量</span> <strong>Open Interest (OI)</strong>：市場上尚未結算的合約總數，判斷趨勢延續性的參考。</li>
+                <li><span class="tag">轉倉</span> <strong>Rollover</strong>：將即將到期的合約平倉，並同時建立遠月合約的部位。</li>
+                <li><span class="tag">正價差</span> <strong>Contango</strong>：期貨價格 > 現貨價格 (常見於多頭市場)。</li>
+                <li><span class="tag">逆價差</span> <strong>Backwardation</strong>：期貨價格 < 現貨價格 (代表現貨供不應求或市場看空未來)。</li>
+            </ul>
+
+            <h3>⚠️ 保證金追繳流程 (Margin Call)</h3>
+
+            <div class="mermaid">
+                graph TD
+                Start["🚀 開倉進場"] --> Check{"權益數 &lt; 維持保證金?"}
+
+                Check -- "No (安全)" --> Hold["正常持倉"]
+                Check -- "Yes (危險)" --> Call["📞 收到追繳通知 (Margin Call)"]
+
+                Call --> Action{"期限內補足資金?"}
+
+                Action -- "Yes (補錢)" --> Hold
+                Action -- "No (沒錢)" --> Kill["☠️ 斷頭/強制平倉 (Liquidation)"]
+
+                style Call fill:#fef08a,stroke:#854d0e,stroke-width:2px
+                style Kill fill:#fda4af,stroke:#991b1b,stroke-width:2px,color:#991b1b
+            </div>
+        </div>
+
+        <!-- Section 4: Forex -->
+        <div class="card">
+            <h2>4. 外匯 (Forex)</h2>
+            <p>外匯是貨幣之間的交換，主要賺取匯差與利息。</p>
+
+            <h3>關鍵術語</h3>
+            <ul>
+                <li><span class="tag">貨幣對</span> <strong>Currency Pair</strong>：外匯交易總是成對進行，如 EUR/USD。</li>
+                <li><span class="tag">匯率</span> <strong>Exchange Rate</strong>：一種貨幣兌換另一種貨幣的比率。</li>
+                <li><span class="tag">點差</span> <strong>Spread</strong>：買價 (Bid) 與賣價 (Ask) 之間的差額，交易成本。</li>
+                <li><span class="tag">點</span> <strong>Pip</strong>：匯率變動的最小單位。</li>
+                <li><span class="tag">槓桿</span> <strong>Leverage</strong>：利用小額資金控制大額交易部位的工具。</li>
+                <li><span class="tag">止損</span> <strong>Stop Loss</strong>：設定虧損達到某程度時自動平倉。</li>
+                <li><span class="tag">止盈</span> <strong>Take Profit</strong>：設定獲利達到某程度時自動平倉。</li>
+            </ul>
+
+            <h3>報價解讀</h3>
+            <p>交易總是成對出現，例如 <strong>EUR/USD</strong> (歐元兌美元)。</p>
+
+            <div class="mermaid">
+                graph TB
+                subgraph Quote ["報價看板: EUR/USD"]
+                direction TB
+                Bid["Bid (買價): 1.1000"]
+                Ask["Ask (賣價): 1.1002"]
+                Client["投資人"]
+
+                Client -- "若要賣出 EUR" --> Bid
+                Client -- "若要買入 EUR" --> Ask
+
+                Note["點差 Spread = 2 pips"]
+
+                Bid -.- Note
+                Ask -.- Note
+                end
+                style Quote fill:#f0f9ff,stroke:#0ea5e9
+            </div>
+        </div>
+
+        <footer>
+            <p>Generated by Antigravity | 投資一定有風險，投資理財有賺有賠，申購前應詳閱公開說明書</p>
+        </footer>
+    </div>
+
+    <!-- Mermaid JS -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+
+</body>
+
+</html>
